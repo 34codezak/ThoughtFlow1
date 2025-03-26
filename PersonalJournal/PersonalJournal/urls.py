@@ -17,7 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from journal.views import signup, user_logout
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", include("journal.urls")), # Include the journal app's urls.py file
+    # - This ensures that the journal app's urls are recognized when a user visits the site.
+    path("signup/", signup, name="signup"),
+    path("login/", LoginView.as_view(), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
 ]
