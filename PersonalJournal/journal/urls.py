@@ -9,5 +9,6 @@ urlpatterns = [
     path("login/", LoginView.as_view(), name="login"), # Uses Django's built-in LoginView but with a custom template
     path("logout/", views.user_logout, name="logout"), # Calls the user_logout function in views.py to handle the logout process and redirect them
     path("", views.home, name="home"), # Calls the home function in views.py to render the home page
+    path("update_profile/", views.update_profile, name="update_profile"), # Calls the update_profile function in views.py to render the update profile page
 ]
 

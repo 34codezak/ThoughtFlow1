@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from .models import JournalEntry
+from django.contrib.auth.decorators import login_required
+from .forms import ProfileForm
 
 # User Signup
 def signup(request):
@@ -38,3 +40,16 @@ def user_logout(request):
 # Home view
 def home(request):
     return render(request, "home.html")
+
+# View for updating a user's profile with a LoginRequiredMixin
+@login_required
+def update_profile(request):
+    user_profile = request.user.profile # Access the oneToOne related profile
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    else:
+        form = ProfileForm(instance=user_profile)
+    return render(request, "update_profile.html", {"form": form})
