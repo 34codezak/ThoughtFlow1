@@ -139,3 +139,8 @@ def get_entries(request, entry_id):
     entries =  JournalEntry.objects.filter(user=request.user, is_deleted=False).order_by("-created_at")
     entries_data = [{"id": e.id, "title": e.title, "content": e.content, "created_at": e.created_at} for e in entries]
     return JsonResponse({"entries": entries_data}, status=200)
+
+@login_required
+def journal_home(request):
+    entries = JournalEntry.objects.filter(user=request.user, is_deleted=False).order_by("-created_at")
+    return render(request, "journal/journal_home.html", {"entries": entries})

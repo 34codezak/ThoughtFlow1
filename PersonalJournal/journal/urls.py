@@ -16,5 +16,6 @@ urlpatterns = [
     path("delete/<int:pk>/", views.delete_entry, name="delete_entry"), # Calls the delete_journal_entry function in views.py to render the delete journal entry page
     path("entries/", views.get_entries, name="get_entries"), # Calls the get_entries function in views.py to render the get entries page
     path("profile/update/", views.profile_update, name="profile_update"), # Calls the profile_update function in views.py to render the profile update page
+    path("", views.journal_home, name="journal_home"), # Calls the home function in views.py to render the journal_home page
 ]
 
