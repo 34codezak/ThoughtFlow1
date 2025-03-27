@@ -135,12 +135,19 @@ def delete_entry(request, entry_id):
     
 # The GET logic
 @login_required
-def get_entries(request, entry_id):
+def get_entries(request):
     entries =  JournalEntry.objects.filter(user=request.user, is_deleted=False).order_by("-created_at")
     entries_data = [{"id": e.id, "title": e.title, "content": e.content, "created_at": e.created_at} for e in entries]
     return JsonResponse({"entries": entries_data}, status=200)
 
 @login_required
 def journal_home(request):
+    sort_by = request.GET.get("sort", "-created_at") # Default sort by created_at in descending order
     entries = JournalEntry.objects.filter(user=request.user, is_deleted=False).order_by("-created_at")
     return render(request, "journal/journal_home.html", {"entries": entries})
+
+def entries_view(request):
+    # Fetch all journal entries for the logged-in user
+    sort_by = request.GET.get("sort", "-created_at") # Default sort by created_at in descending order
+    entries = JournalEntry.objects.filter(user=request.user, is_deleted=False).order_by("-created_at")
+    return render(request, "entries.html", {"entries": entries})

@@ -20,6 +20,7 @@ from django.urls import path
 from journal.views import signup, user_logout
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import include
+from journal import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,4 +29,7 @@ urlpatterns = [
     path("signup/", signup, name="signup"),
     path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
+    path("entires/", views.entries_view, name="entries"),
+    path("profile/", views.profile_detail, name="profile_detail"),
+    path("profile/update/", views.profile_update, name="profile_update"),
 ]

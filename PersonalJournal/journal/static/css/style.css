@@ -6,6 +6,17 @@ body {
     padding: 0;
 }
 
+p a {
+    color: #ff9800;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+p a:hover {
+    color: #f3d19e;
+    cursor: pointer;
+}
+
 nav {
     background: #333;
     color: #f1f1f1;
@@ -30,9 +41,40 @@ nav ul li a {
     color: #ff9800;
 }
 
+nav ul li a:hover {
+    text-decoration: underline 4px;
+    color: #f3d19e;
+}
+
 main {
     padding: 20px;
     text-align: center;
+}
+
+.main {
+    padding: 2em;
+}
+
+.btn {
+    background: #007bff;
+    color: #f1f1f1;
+    padding: 0.5em 1em;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #c82333;
 }
 
 .container {
@@ -46,7 +88,7 @@ main {
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #f3d19e;
 }
 
 .btn-primary {
@@ -57,3 +99,18 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.sort-links {
+    margin: 10px 0;
+}
+
+.sort-links a {
+    text-decoration: none;
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.sort-links a:hover {
+    text-decoration: underline;
+}
+
