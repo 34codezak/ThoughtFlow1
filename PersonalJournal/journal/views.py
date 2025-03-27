@@ -10,6 +10,9 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from .models import Profile
 from journal.forms import ProfileUpdateForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 # User Signup
 def signup(request):
@@ -91,3 +94,48 @@ def profile_update(request):
 def profile_detail(request):
     profile = get_object_or_404(Profile, user=request.user)
     return render(request, "profile/profile_detail.html", {"profile": profile})
+
+@csrf_exempt
+@login_required
+# The CREATE logic
+def create_entry(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        title = data.get("title")
+        content = data.get("content")
+        entry = JournalEntry.objects.create(title=title, content=content, user=request.user)
+        return JsonResponse({"message": "Journal created successfully", "entry_id": entry.id}, status=201)
+    
+# The READ logic
+def view_entries(request):
+    entries = JournalEntry.objects.filter(user=request.user, is_deleted=False)
+    return render(request, "journal/view_entries.html", {"entries": entries})
+
+# The UPDATE logic
+@csrf_exempt
+@login_required
+def update_entry(request, entry_id):
+    entry = get_object_or_404(JournalEntry, id=entry_id, user=request.user)
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        entry.title = data.get("title", entry.title)
+        entry.content = data.get("content", entry.content)
+        entry.save()
+        return JsonResponse({"message": "Journal updated successfully"}, status=200)
+
+# The DELETE logic
+@csrf_exempt
+@login_required
+def delete_entry(request, entry_id):
+    entry = get_object_or_404(JournalEntry, id=entry_id, user=request.user)
+    if request.method == "DELETE":
+        entry.is_deleted = True
+        entry.save()
+        return JsonResponse({"message": "Journal moved to trash successfully"}, status=200)
+    
+# The GET logic
+@login_required
+def get_entries(request, entry_id):
+    entries =  JournalEntry.objects.filter(user=request.user, is_deleted=False).order_by("-created_at")
+    entries_data = [{"id": e.id, "title": e.title, "content": e.content, "created_at": e.created_at} for e in entries]
+    return JsonResponse({"entries": entries_data}, status=200)

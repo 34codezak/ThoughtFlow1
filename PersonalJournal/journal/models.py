@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 
 # User model extension
 class Profile(models.Model):
@@ -31,3 +32,15 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
         instance.profile.save()
+        
+# JournalEntry model
+class JournalEntry(models.Model):
+    title = models.CharField(max_length=100)
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
+    content = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False) # This is a soft delete field
+
+    def __str__(self):
+        return self.title

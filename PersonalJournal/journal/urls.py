@@ -11,5 +11,10 @@ urlpatterns = [
     path("", views.home, name="home"), # Calls the home function in views.py to render the home page
     path("profile/update/", views.update_profile, name="update_profile"), # Calls the update_profile function in views.py to render the update profile page
     path("profile/", views.profile_detail, name="profile_detail"),  # Calls the profile_detail function in views.py to render the profile page
+    path("create/", views.create_journal_entry, name="create_journal_entry"), # Calls the create_journal_entry function in views.py to render the create journal entry 
+    path("update/<int:pk>/", views.update_entry, name="update_entry"), # Calls the update_journal_entry function in views.py to render the update journal entry page
+    path("delete/<int:pk>/", views.delete_entry, name="delete_entry"), # Calls the delete_journal_entry function in views.py to render the delete journal entry page
+    path("entries/", views.get_entries, name="get_entries"), # Calls the get_entries function in views.py to render the get entries page
+    path("profile/update/", views.profile_update, name="profile_update"), # Calls the profile_update function in views.py to render the profile update page
 ]
 
