@@ -9,3 +9,11 @@ class ProfileForm(forms.ModelForm):
         widgets = {
             'bio': forms.Textarea(attrs={'placeholder': 'Write a short bio about yourself...'}),
         }
+        
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_pic', 'bio']
+        widgets = {
+            'bio': forms.Textarea(attrs={'placeholder': 'Write a short bio about yourself...'}),
+        }

@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    
+
+    <div class="container">
     <h1>Update Your Profile</h1>
 
     {% extends "base.html" %}
@@ -18,7 +20,8 @@
         {{ form.as_p }}
         <button type="submit">Update</button>
     </form>
-    <a href="{% url 'profile' %}">Back to Profile</a>
+    <a href="{% url 'profile_detail' %}">Cancel</a>
     {% endblock %}
+    </div>
 </body>
 </html>

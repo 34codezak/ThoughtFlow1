@@ -34,3 +34,26 @@ main {
     padding: 20px;
     text-align: center;
 }
+
+.container {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: #f1f1f1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

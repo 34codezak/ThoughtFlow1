@@ -26,6 +26,6 @@ urlpatterns = [
     path("", include("journal.urls")), # Include the journal app's urls.py file
     # - This ensures that the journal app's urls are recognized when a user visits the site.
     path("signup/", signup, name="signup"),
-    path("login/", LoginView.as_view(), name="login"),
+    path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
 ]
