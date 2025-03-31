@@ -20,5 +20,6 @@ urlpatterns = [
     path("entries/", views.entries_view, name="entries"), # Calls the entries_view function in views.py to render the entries page
     path("profile/update/", views.profile_update, name="profile_update"), # Calls the profile_update function in views.py to render the profile update page
     path("profile/", views.profile_detail, name="profile_detail"), # Calls the profile_detail function in views.py to render the profile page
+    path("restore/<int:pk>/", views.restore_entry, name="restore_entry"), # Calls the restore_entry function in views.py to render the restore entry page
 ]
 

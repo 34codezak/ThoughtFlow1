@@ -17,7 +17,7 @@
         <small>{{ entry.created }}</small>
         <a href="{% url 'entry_detail' entry.id %}">View</a>
     </li>
-    {% endfor %}
+    {% end for %}
 </ul>
 <a href="{% url 'entry_form' %}" class="btn">Add New Entry</a>
 </div>

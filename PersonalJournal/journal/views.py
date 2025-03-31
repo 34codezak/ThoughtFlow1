@@ -95,6 +95,7 @@ def profile_detail(request):
     profile = get_object_or_404(Profile, user=request.user)
     return render(request, "profile/profile_detail.html", {"profile": profile})
 
+# CRUD operations' views
 @csrf_exempt
 @login_required
 # The CREATE logic
@@ -132,6 +133,15 @@ def delete_entry(request, entry_id):
         entry.is_deleted = True
         entry.save()
         return JsonResponse({"message": "Journal moved to trash successfully"}, status=200)
+    
+@login_required
+def restore_entry(request, entry_id):
+    entry = get_object_or_404(JournalEntry, id=entry_id, user=request.user, is_deleted=True)
+    if request.method == "POST":
+        entry.restore()
+        return JsonResponse({"message": "Journal entry restored successfully"}, status=200)
+    return JsonResponse({"error": "Invalid request method"}, status=400)
+
     
 # The GET logic
 @login_required
