@@ -9,6 +9,7 @@
     {% extends "base.html" %}
 
     {% block content %}
+    <div class="login">
     <h2>Login</h2>
     <form method="post">
         {% csrf_token %}
@@ -16,6 +17,7 @@
         <button type="submit">Login</button>
     </form>
     <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+    </div>
     {% endblock %}
 </body>
 </html>

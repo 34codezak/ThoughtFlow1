@@ -1,7 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #1a1a1a;
-    color: #f1f1f1;
+    color: #f3d19e/*#f1f1f1*/;
     margin: 0;
     padding: 0;
 }
@@ -39,6 +39,7 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     color: #ff9800;
+    list-style: none;
 }
 
 nav ul li a:hover {
@@ -112,5 +113,47 @@ h1 {
 
 .sort-links a:hover {
     text-decoration: underline;
+}
+
+/*Style for the login form*/
+button {
+    background: #f3d19e;
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    margin-left: 85px;
+    color: #004;
+    font-weight: 600;
+    width: max-content;
+}
+
+input {
+    background: #f3d19e;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    margin-left: 25px;
+    color: #004;
+    font-weight: 600;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    box-shadow: rgba(68, 44, 0, 0.801) 4px 1px 4px 1px;
+    border-radius: 5px;
+    margin: 30px auto;
+}
+
+.signup {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(68, 44, 0, 0.801) 4px 1px 4px 1px;
+    border-radius: 5px;
+    margin: 30px auto;
 }
 
