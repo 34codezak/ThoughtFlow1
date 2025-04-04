@@ -3,8 +3,9 @@
 {% block content %}
 <h2>ThoughtFlows</h2>
 
+<div class="login">
 <div class="sort-links">
-    <a href="?sort=created_at" class="sort-link">Newest First</a>
+    <a href="?sort=date_posted" class="sort-link">Newest First</a> <br>
     <a href="?sort=updated_at" class="sort-link">Recently Updated</a>
 </div>
 
@@ -19,6 +20,7 @@
     </li>
     {% endfor %}
 </ul>
-<a href="{% url 'entry_form' %}" class="btn">Add New Entry</a>
+<a href="{% url 'journal:entry_form' %}" class="btn">Create a Memory</a>
+</div>
 </div>
 {% endblock %}

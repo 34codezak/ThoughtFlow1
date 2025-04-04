@@ -12,6 +12,16 @@ from .forms import ProfileForm, ProfileUpdateForm
 # Renamed login function to avoid conflicts
 def user_login(request):
     if request.method == "POST":
+        print(request.body)
+        
+        try:
+            data = json.loads(request.body)
+            title = data.get("title")
+            content = data.get("content")
+            
+            return JsonResponse({"message": "Journal created successfully"}, status=201)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON data"}, status=400)
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
@@ -29,7 +39,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)  # Log the user in after signing up
-            return redirect("home")
+            return redirect("login")
     else:
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})
@@ -51,10 +61,10 @@ def update_profile(request):
         form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect("profile")
+            return redirect("journal:update_profile")
     else:
         form = ProfileUpdateForm(instance=profile)
-    return render(request, "profile/update_profile.html", {"form": form})
+    return render(request, "profile/update_profile.html")
 
 # Profile detail
 @login_required
@@ -66,15 +76,30 @@ def profile_detail(request):
 @csrf_exempt
 @login_required
 def create_entry(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
+    if request.method != "POST":
+        try:
+            data = json.loads(request.body.decode("utf-8")) # Safely parsing json
+            title = data.get("title")
+            content = data.get("content")
+            
+            if not title or not content:
+                return JsonResponse({"error": "Title and content are required"}, status=400)
+            
+            # Save to the database
+            entry = JournalEntry.objects.create(title=title, content=content, user=request.user)
+            return JsonResponse({"message": "Journal created successfully", "entry_id": entry.id}, status=201)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON data"}, status=400)
+        
+    return JsonResponse({"error": "Invalid request method"}, status=400)
+    """data = json.loads(request.body)
         title = data.get("title")
         content = data.get("content")
         entry = JournalEntry.objects.create(title=title, content=content, user=request.user)
         return JsonResponse({"message": "Journal created successfully", "entry_id": entry.id}, status=201)
-    
+    """
     # Fix: Return a response for GET requests
-    return render(request, "journal/entry_form.html", {"form": None})
+    return render(request, "entry_form.html", {"form": None})
 
 # Read entries
 @login_required
@@ -128,7 +153,7 @@ def get_entries(request):
 def journal_home(request):
     sort_by = request.GET.get("sort", "-date_posted")
     entries = JournalEntry.objects.filter(user=request.user, is_deleted=False).order_by(sort_by)
-    return render(request, "journal/journal_home.html", {"entries": entries})
+    return render(request, "journal/home.html", {"entries": entries})
 
 # Entries view
 @login_required

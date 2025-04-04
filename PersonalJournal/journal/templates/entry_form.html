@@ -1,10 +1,15 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-<div class="profile-container">
-    <img src="{{ user.profile.picture.url }}" alt="Profile Picture" class="profile-pic">
-    <h2>{{ user.username }}</h2>
-    <p>{{ user.profile.bio }}</p>
-    <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
-</div>
+    <h2>Create or Edit Journal Entry</h2>
+    <p>
+        {{ entry.title }}
+        {{ entry.content }}
+       <small>Created on: {{ entry.date_posted }}</small>
+    </p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
 {% endblock %}

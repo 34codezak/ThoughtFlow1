@@ -4,7 +4,7 @@
 <div class="entry-detail-container">
     <h2>{{ entry.title }}</h2>
     <p>{{ entry.content }}</p>
-    <small>Created on: {{ entry.created_at }}</small>
+    <small>Created on: {{ entry.date_posted }}</small>
     <div class="actions">
         <a href="{% url 'edit_entry' entry.id %}" class="btn">Edit</a>
         <form action="{% url 'delete_entry' entry.id %}" method="post" style="display:inline;">

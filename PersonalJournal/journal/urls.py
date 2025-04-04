@@ -1,6 +1,10 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
+app_name = "journal"
 
 urlpatterns = [
     path("signup/", views.signup, name="signup"),
@@ -8,10 +12,10 @@ urlpatterns = [
     path("logout/", views.user_logout, name="logout"),
     
     path("", views.home, name="home"),
-    path("journal/", views.journal_home, name="journal_home"),
+    path("template/", views.journal_home, name="journal_home"),
     
     # Profile-related URLs
-    path("profile/update/", views.update_profile, name="profile_update"),
+    path("profile/update/", views.update_profile, name="update_profile"),   
     path("profile/", views.profile_detail, name="profile_detail"),
 
     # Journal Entry CRUD
@@ -24,3 +28,6 @@ urlpatterns = [
     path("entries/", views.entries_view, name="entries"),
     path("entries/json/", views.get_entries, name="get_entries"),  # JSON API endpoint
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

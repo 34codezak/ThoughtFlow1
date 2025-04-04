@@ -57,8 +57,8 @@ main {
 }
 
 .btn {
-    background: #007bff;
-    color: #f1f1f1;
+    background: #f3d19e;
+    color: #004;
     padding: 0.5em 1em;
     border: none;
     text-decoration: none;
@@ -67,7 +67,7 @@ main {
 }
 
 .btn:hover {
-    background: #0056b3;
+    background: #f79b11;
 }
 
 .delete-btn {
@@ -102,22 +102,35 @@ h1 {
 }
 
 .sort-links {
-    margin: 10px 0;
+    margin-left: 40%;
+    margin-right: 40%;
+    padding: 8px;
 }
 
 .sort-links a {
+    display: flex;
     text-decoration: none;
-    color: #007bff;
-    margin-right: 10px;
+    color: #004;
+    background: #f3d19e;
+    border-radius: 5px;
+    padding: 7px;
+    cursor: pointer;
 }
 
 .sort-links a:hover {
-    text-decoration: underline;
+    background: #f79b11;
+    color: #004;
+}
+
+.sort-link {
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
 }
 
 /*Style for the login form*/
 button {
-    background: #f3d19e;
+    background: #ecc181;
     border: none;
     border-radius: 6px;
     padding: 8px;
@@ -125,6 +138,12 @@ button {
     color: #004;
     font-weight: 600;
     width: max-content;
+}
+
+button:hover {
+    background: #f79b11;
+    color: #004;
+    justify-content: center;
 }
 
 input {
