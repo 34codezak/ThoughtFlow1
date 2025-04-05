@@ -6,6 +6,11 @@ body {
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+    color: #ff9800;
+}
+
 p a {
     color: #ff9800;
     font-weight: 600;

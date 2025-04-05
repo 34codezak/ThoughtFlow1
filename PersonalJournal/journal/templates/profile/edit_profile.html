@@ -1,3 +1,4 @@
+<!--edit_profile.html-->
 {% extends "base.html" %}
 
 {% block content %}
@@ -7,5 +8,5 @@
         {{ form.as_p }}
         <button type="submit">Update Profile</button>
     </form>
-    <a href="{% url 'profile_detail' %}">Cancel</a>
+    <a href="{% url 'journal:profile_detail' %}">Cancel</a>
 {% endblock %}

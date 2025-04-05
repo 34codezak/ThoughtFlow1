@@ -16,7 +16,7 @@ urlpatterns = [
     
     # Profile-related URLs
     path("profile/update/", views.update_profile, name="update_profile"),   
-    path("profile/", views.profile_detail, name="profile_detail"),
+    path("profile/detail/", views.profile_detail, name="profile_detail"),
 
     # Journal Entry CRUD
     path("create/", views.create_entry, name="entry_form"),

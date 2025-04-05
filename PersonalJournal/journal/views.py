@@ -72,34 +72,42 @@ def profile_detail(request):
     profile = get_object_or_404(Profile, user=request.user)
     return render(request, "profile/profile_detail.html", {"profile": profile})
 
+# Edit profile
+def edit_profile(request):
+    user = request.user  # Get the currently logged-in user
+    profile = user.profile  # Assuming there's a `profile` related model
+    form = ProfileForm(instance=profile)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('journal:profile_detail')
+
+    return render(request, 'profile/edit_profile.html', {'form': form})
+
 # Fixed `create_entry`
 @csrf_exempt
 @login_required
 def create_entry(request):
-    if request.method != "POST":
+    if request.method == "POST":
         try:
-            data = json.loads(request.body.decode("utf-8")) # Safely parsing json
+            data = json.loads(request.body.decode("utf-8"))  # Parse JSON safely
             title = data.get("title")
             content = data.get("content")
             
             if not title or not content:
                 return JsonResponse({"error": "Title and content are required"}, status=400)
             
-            # Save to the database
+            # Save entry to the database
             entry = JournalEntry.objects.create(title=title, content=content, user=request.user)
             return JsonResponse({"message": "Journal created successfully", "entry_id": entry.id}, status=201)
+        
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON data"}, status=400)
-        
-    return JsonResponse({"error": "Invalid request method"}, status=400)
-    """data = json.loads(request.body)
-        title = data.get("title")
-        content = data.get("content")
-        entry = JournalEntry.objects.create(title=title, content=content, user=request.user)
-        return JsonResponse({"message": "Journal created successfully", "entry_id": entry.id}, status=201)
-    """
-    # Fix: Return a response for GET requests
-    return render(request, "entry_form.html", {"form": None})
+
+    # If request method is not POST, return an HTML form (if needed)
+    return render(request, "create_entry.html", {"form": None})  # Show a form for non-POST requests
 
 # Read entries
 @login_required

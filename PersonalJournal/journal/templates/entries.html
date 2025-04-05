@@ -1,3 +1,4 @@
+<!--entries.html-->
 {% extends 'base.html' %}
 
 {% block content %}
@@ -16,7 +17,7 @@
         <h3>{{ entry.title }}</h3>
         <p>{{ entry.content|truncatewords:15 }}</p>
         <small>{{ entry.created }}</small>
-        <a href="{% url 'entry_detail' entry.id %}">View</a>
+        <a href="{% url 'journal:entry_detail' entry.id %}">View</a>
     </li>
     {% endfor %}
 </ul>
