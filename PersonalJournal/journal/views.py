@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from .models import JournalEntry, Profile
 from .forms import ProfileForm, ProfileUpdateForm
+from django import forms
 
 # Renamed login function to avoid conflicts
 def user_login(request):
@@ -72,6 +73,12 @@ def profile_detail(request):
     profile = get_object_or_404(Profile, user=request.user)
     return render(request, "profile/profile_detail.html", {"profile": profile})
 
+def clean_profile_pic(self):
+    profile_pic = self.cleaned_data.get('profile_pic')
+    if profile_pic and profile_pic.size > 5 * 1024 * 1024:  # Limit to 5 MB
+        raise forms.ValidationError("Profile picture file size should not exceed 5MB.")
+    return profile_pic
+
 # Edit profile
 def edit_profile(request):
     user = request.user  # Get the currently logged-in user
@@ -84,7 +91,7 @@ def edit_profile(request):
             form.save()
             return redirect('journal:profile_detail')
 
-    return render(request, 'profile/edit_profile.html', {'form': form})
+    return render(request, 'journal/edit_profile.html', {'form': form})
 
 # Fixed `create_entry`
 @csrf_exempt
@@ -99,15 +106,14 @@ def create_entry(request):
             if not title or not content:
                 return JsonResponse({"error": "Title and content are required"}, status=400)
             
-            # Save entry to the database
             entry = JournalEntry.objects.create(title=title, content=content, user=request.user)
             return JsonResponse({"message": "Journal created successfully", "entry_id": entry.id}, status=201)
         
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON data"}, status=400)
 
-    # If request method is not POST, return an HTML form (if needed)
-    return render(request, "create_entry.html", {"form": None})  # Show a form for non-POST requests
+    # If request method is not POST, you can just return a 405 Method Not Allowed
+    return JsonResponse({"error": "GET method not supported"}, status=405)
 
 # Read entries
 @login_required

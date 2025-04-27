@@ -1,0 +1,205 @@
+:root {
+    --background-dark: #1a1a1a;
+    --text-color-light: #f3d19e;
+    --accent-color: #ff9800;
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*background: #1a1a1a;*/
+    /*color: #f3d19e/*#f1f1f1*/
+    margin: 0;
+    padding: 0;
+    background: var(--background-dark);
+    color: var(--text-color-light);
+}
+
+a {
+    text-decoration: none;
+    color: #ff9800;
+}
+
+p a {
+    color: #ff9800;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+p a:hover {
+    color: #f3d19e;
+    cursor: pointer;
+}
+
+nav {
+    background: #333;
+    color: #f1f1f1;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ff9800;
+    list-style: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    color: #f3d19e;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.main {
+    padding: 2em;
+}
+
+.btn {
+    background: #f3d19e;
+    color: #004;
+    padding: 0.5em 1em;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #f79b11;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+h1 {
+    text-align: center;
+    color: #f3d19e;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: #f1f1f1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sort-links {
+    margin-left: 40%;
+    margin-right: 40%;
+    padding: 8px;
+}
+
+.sort-links a {
+    display: flex;
+    text-decoration: none;
+    color: #004;
+    background: #f3d19e;
+    border-radius: 5px;
+    padding: 7px;
+    cursor: pointer;
+}
+
+.sort-links a:hover {
+    background: #f79b11;
+    color: #004;
+}
+
+.sort-link {
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+}
+
+/*Style for the login form*/
+button {
+    background: #ecc181;
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    margin-left: 85px;
+    color: #004;
+    font-weight: 600;
+    width: max-content;
+}
+
+button:hover {
+    background: #f79b11;
+    color: #004;
+    justify-content: center;
+}
+
+input {
+    background: #f3d19e;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    margin-left: 25px;
+    color: #004;
+    font-weight: 600;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    box-shadow: rgba(68, 44, 0, 0.801) 4px 1px 4px 1px;
+    border-radius: 5px;
+    margin: 30px auto;
+}
+
+.signup {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(68, 44, 0, 0.801) 4px 1px 4px 1px;
+    border-radius: 5px;
+    margin: 30px auto;
+}
+
+/*Responsive design*/
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    nav ul {
+        flex-direction: column;
+    }
+    .sort-links {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}

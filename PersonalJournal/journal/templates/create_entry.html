@@ -3,12 +3,12 @@
 
 {% block content %}
     <h2>Create or Edit Journal Entry</h2>
-    <p>
+    <p style="background-color: #040; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%; max-width: 600px; border: 1px solid #ddd; align-items: center;">
         {{ entry.title }}
         {{ entry.content }}
        <small>Created on: {{ entry.date_posted }}</small>
     </p>
-    <form method="POST">
+    <form method="POST" style="background-color: #040; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%; max-width: 600px; border: 1px solid #ddd; align-items: center;">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>

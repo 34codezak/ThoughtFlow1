@@ -1,3 +1,5 @@
+# forms.py
+
 from django import forms
 from .models import Profile, JournalEntry
 
@@ -22,3 +24,10 @@ class ProfileUpdateForm(forms.ModelForm):
         widgets = {
             'bio': forms.Textarea(attrs={'placeholder': 'Write a short bio about yourself...'}),
         }
+        
+ 
+def __init__(self, *args, **kwargs):
+    super().__init__(*args, **kwargs)
+    
+        
+    

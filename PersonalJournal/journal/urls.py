@@ -15,6 +15,7 @@ urlpatterns = [
     path("template/", views.journal_home, name="journal_home"),
     
     # Profile-related URLs
+    path("profile/edit_profile/", views.edit_profile, name="edit_profile"), 
     path("profile/update/", views.update_profile, name="update_profile"),   
     path("profile/detail/", views.profile_detail, name="profile_detail"),
 

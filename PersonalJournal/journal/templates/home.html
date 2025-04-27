@@ -6,15 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 </head>
-<body>
+<body style="font-family: 'Quicksand', sans-serif; text-align: center; background-color: #042;">
     {% extends "base.html" %}
 
     {% block content %}
+    
+<div class="container" style="background-color: #040; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%; max-width: 600px;">
     <h1>Welcome to ThoughtFlow</h1>
     <p style="color: #f3d19e;">A better way to track your thoughts and progress with ease.</p>
     <p style="color: #f3d19e;">Get started by creating an account or logging in.</p>
     <p><a href="{% url 'entries' %}">View Entries</a></p>
     <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a></p>
+</div>
+
+    <div class="footer" style="text-align: center; margin-top: 20px; color: #f3d19e;">
+        <p>&copy; 2025 ThoughtFlow. All rights reserved.</p>
+        <p>Follow us on <a href="#" style="color: #f3d19e;">Twitter</a></p>
+
     {% endblock %}
 </body>
 </html>

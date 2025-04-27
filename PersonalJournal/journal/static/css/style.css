@@ -1,9 +1,18 @@
+:root {
+    --background-dark: #041;
+    --text-color-light: #f3d19e;
+    --accent-color: #ff9800;
+}
+
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #1a1a1a;
-    color: #f3d19e/*#f1f1f1*/;
+    font-family: /*'Segoe UI', Tahoma, Geneva, Verdana, sans-serif*/ Quicksand;
+    /*background: #1a1a1a;*/
+    /*color: #f3d19e/*#f1f1f1*/
     margin: 0;
     padding: 0;
+    background-color: var(--background-dark);
+    color: var(--text-color-light);
 }
 
 a {
@@ -48,7 +57,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    text-decoration: underline 4px;
+    text-decoration: underline;
     color: #f3d19e;
 }
 
@@ -87,7 +96,7 @@ main {
     width: 50%;
     margin: auto;
     padding: 20px;
-    background: #f9f9f9;
+    background-color: #041;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
@@ -162,12 +171,13 @@ input {
 }
 
 .login {
+    background-color: #041;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 50vh;
-    box-shadow: rgba(68, 44, 0, 0.801) 4px 1px 4px 1px;
+    border: 1px solid #ddd;
     border-radius: 5px;
     margin: 30px auto;
 }
@@ -176,8 +186,21 @@ input {
     display: block;
     align-items: center;
     justify-content: center;
-    box-shadow: rgba(68, 44, 0, 0.801) 4px 1px 4px 1px;
+    border: 1px solid #ddd;
     border-radius: 5px;
     margin: 30px auto;
 }
 
+/*Responsive design*/
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    nav ul {
+        flex-direction: column;
+    }
+    .sort-links {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
