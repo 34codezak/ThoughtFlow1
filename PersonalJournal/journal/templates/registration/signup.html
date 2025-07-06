@@ -1,24 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-     
-</head>
-<body style="font-family: 'Quicksand', sans-serif; background-color: #042; text-align: center;">
-    {% extends "base.html" %}
+{% extends "base.html" %}
+{% load widget_tweaks %}
 
-    {% block content %}
-    <div class="signup" style="background-color: #040; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%; max-width: 600px; border: 1px solid #ddd; align-items: center;">
-    <h2 style="font-size: 30px;">Sign Up</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card auth-card shadow-lg">
+                <div class="card-header auth-card-header text-center py-3">
+                    <h2 class="mb-0">Sign Up</h2>
+                </div>
+                
+                <div class="card-body p-4 p-md-5">
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        {% for field in form %}
+                        <div class="mb-4">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            
+                            {% if field.errors %}
+                                {% render_field field class+="form-control is-invalid" %}
+                            {% else %}
+                                {% render_field field class+="form-control" %}
+                            {% endif %}
+                            
+                            {% if field.help_text %}
+                            <div class="form-text">{{ field.help_text }}</div>
+                            {% endif %}
+                            
+                            {% for error in field.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-auth-primary btn-lg py-3 fw-bold">
+                                Create Account
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <hr class="my-4 auth-divider">
+                    
+                    <div class="text-center">
+                        <p class="mb-0">Already have an account?</p>
+                        <a href="{% url 'login' %}" class="btn btn-auth-outline mt-3">
+                            Login Here
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    {% endblock %}
-</body>
-</html>
+</div>
+{% endblock %}

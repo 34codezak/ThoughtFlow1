@@ -1,28 +1,26 @@
-<!--home.html-->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body style="font-family: 'Quicksand', sans-serif; text-align: center; background-color: #042;">
-    {% extends "base.html" %}
+{% extends "base.html" %}
 
-    {% block content %}
-    
-<div class="container" style="background-color: #040; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%; max-width: 600px;">
-    <h1>Welcome to ThoughtFlow</h1>
-    <p style="color: #f3d19e;">A better way to track your thoughts and progress with ease.</p>
-    <p style="color: #f3d19e;">Get started by creating an account or logging in.</p>
-    <p><a href="{% url 'entries' %}">View Entries</a></p>
-    <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a></p>
-</div>
+{% block content %}
+<div class="container py-5">
+    <div class="card bg-dark text-center mx-auto" style="max-width: 600px;">
+        <div class="card-body p-4">
+            <h1 class="card-title mb-4">Welcome to ThoughtFlow</h1>
+            <p class="text-warning mb-3">A better way to track your thoughts and progress with ease.</p>
+            <p class="text-warning mb-4">Get started by creating an account or logging in.</p>
+            
+            <div class="d-grid gap-3">
+                <a href="{% url 'entries' %}" class="btn btn-primary">View Entries</a>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+                    <a href="{% url 'signup' %}" class="btn btn-info">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="footer" style="text-align: center; margin-top: 20px; color: #f3d19e;">
+    <footer class="text-center mt-5 text-warning">
         <p>&copy; 2025 ThoughtFlow. All rights reserved.</p>
-        <p>Follow us on <a href="#" style="color: #f3d19e;">Twitter</a></p>
-
-    {% endblock %}
-</body>
-</html>
+        <p class="mt-2">Follow us on <a href="#" class="text-warning text-decoration-none">Twitter</a></p>
+    </footer>
+</div>
+{% endblock %}

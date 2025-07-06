@@ -4,33 +4,63 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Journal || ThoughtFlow {% endblock %}</title>
+    <title>{% block title %}Journal || ThoughtFlow{% endblock %}</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Raleway&family=Quicksand&family=Merriweather&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="bg-dark text-light" style="font-family: 'Quicksand', sans-serif;">
+    <div class="container">
+        <!-- Header -->
+        <header class="text-center my-4">
+            <h1 class="display-4" style="font-family: 'Merriweather', serif;">Let the Thoughts Flow~~~</h1>
+            <h2 class="h4" style="font-family: 'Raleway', sans-serif; font-weight: 300;">As the days go by...</h2>
+        </header>
 
-        <h1 style="font-family: Merriweather;">Let the Thoughts Flow~~~</h1>
-<div class="container" style="background-color: #040;">
-    <h2 style="font-family: 'Raleway'; font-weight: 70;">As the days go by...</h2>
-    <nav style="background-color: #042; border-radius: 10px; padding: 10px; font-weight: 600;">
-        <ul>
-            <li><a href="{% url 'journal:home' %}">Home</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'signup' %}">Sign-up</a></li>
-            <li><a href="{% url 'journal:update_profile' %}">Update Profile</a></li>
-            <li><a href="{% url 'journal:entries' %}">ThoughtFlows</a></li>
-            <li><a href="{% url 'journal:home' %}">Logout</a></li>
-        </ul>
-    </nav>
-</div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark mb-4 rounded" style="background-color: #042; color: tan;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav w-100 justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'journal:home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signup' %}">Sign-up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'journal:update_profile' %}">Update Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'journal:entries' %}">ThoughtFlows</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'journal:home' %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+        <!-- Main Content -->
+        <main class="mb-5">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
 
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
     <script src="{% static 'js/scripts.js' %}"></script>
-
 </body>
 </html>

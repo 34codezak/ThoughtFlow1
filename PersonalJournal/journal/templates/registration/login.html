@@ -1,23 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body style="font-family: 'Quicksand', sans-serif; background-color: #042; text-align: center;">
-    {% extends "base.html" %}
+{% extends "base.html" %}
 
-    {% block content %}
-    <div class="login"style="background-color: #040; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%; max-width: 600px; border: 1px solid #ddd; align-items: center;">
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" href="{% url 'journal:entries' %}">Login</button>
-    </form>
-    <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card auth-card border-0 shadow">
+                <div class="card-body p-4 p-md-5">
+                    <h2 class="card-title text-center mb-4">Login</h2>
+                    
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control form-control-lg" id="id_username" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control form-control-lg" id="id_password" required>
+                        </div>
+                        
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Login
+                            </button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <p class="mb-0">Don't have an account? 
+                                <a href="{% url 'signup' %}" class="text-decoration-none">Sign up here</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    {% endblock %}
-</body>
-</html>
+</div>
+
+<style>
+    .auth-card {
+        background-color: #040;
+        border: 1px solid #444 !important;
+    }
+    
+    .form-control {
+        background-color: #333;
+        color: white;
+        border-color: #555;
+    }
+    
+    .form-control:focus {
+        background-color: #333;
+        color: white;
+        border-color: var(--bs-secondary);
+        box-shadow: 0 0 0 0.25rem rgba(255, 152, 0, 0.25);
+    }
+    
+    .btn-primary {
+        background-color: var(--bs-secondary);
+        border: none;
+        color: #041;
+        font-weight: 600;
+    }
+    
+    .btn-primary:hover {
+        background-color: #f79b11;
+    }
+</style>
+{% endblock %}

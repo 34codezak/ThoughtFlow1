@@ -1,206 +1,184 @@
+/* Bootstrap 5 Custom Theme */
 :root {
-    --background-dark: #041;
-    --text-color-light: #f3d19e;
-    --accent-color: #ff9800;
+    --bs-body-bg: #041;
+    --bs-body-color: #f3d19e;
+    --bs-primary: #f3d19e;
+    --bs-secondary: #ff9800;
+    --bs-danger: #dc3545;
 }
 
-
+/* Body and Typography */
 body {
-    font-family: /*'Segoe UI', Tahoma, Geneva, Verdana, sans-serif*/ Quicksand;
-    /*background: #1a1a1a;*/
-    /*color: #f3d19e/*#f1f1f1*/
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-dark);
-    color: var(--text-color-light);
+    font-family: 'Quicksand', sans-serif;
 }
 
+/* Links */
 a {
+    color: var(--bs-secondary);
     text-decoration: none;
-    color: #ff9800;
 }
 
-p a {
-    color: #ff9800;
-    font-weight: 600;
-    font-size: 1.1em;
-}
-
-p a:hover {
+a:hover {
     color: #f3d19e;
-    cursor: pointer;
 }
 
-nav {
-    background: #333;
-    color: #f1f1f1;
-    padding: 10px 0;
-    text-align: center;
+/* Navigation - Converted to Bootstrap Navbar */
+.navbar-custom {
+    background-color: #333;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
+.navbar-custom .navbar-nav .nav-link {
+    color: var(--bs-secondary);
 }
 
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #ff9800;
-    list-style: none;
-}
-
-nav ul li a:hover {
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: #f3d19e;
     text-decoration: underline;
-    color: #f3d19e;
 }
 
-main {
-    padding: 20px;
-    text-align: center;
-}
-
-.main {
-    padding: 2em;
-}
-
-.btn {
-    background: #f3d19e;
+/* Buttons */
+.btn-custom {
+    background-color: var(--bs-primary);
     color: #004;
-    padding: 0.5em 1em;
     border: none;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
-.btn:hover {
-    background: #f79b11;
+.btn-custom:hover {
+    background-color: #f79b11;
+    color: #004;
 }
 
-.delete-btn {
-    background: #dc3545;
+.btn-delete {
+    background-color: var(--bs-danger);
+    color: white;
 }
 
-.delete-btn:hover {
-    background: #c82333;
+.btn-delete:hover {
+    background-color: #c82333;
 }
 
-.container {
-    width: 50%;
-    margin: auto;
-    padding: 20px;
-    background-color: #041;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+/* Containers */
+.container-custom {
+    background-color: var(--bs-body-bg);
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
 }
 
-h1 {
-    text-align: center;
-    color: #f3d19e;
-}
-
-.btn-primary {
-    background: #007bff;
-    color: #f1f1f1;
-    padding: 10px 15px;
+/* Forms */
+.form-control-custom {
+    background-color: #f3d19e;
+    color: #004;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    font-weight: 600;
 }
 
+.form-control-custom:focus {
+    background-color: #f3d19e;
+    color: #004;
+    box-shadow: 0 0 0 0.25rem rgba(243, 209, 158, 0.25);
+}
+
+.btn-submit {
+    background-color: #ecc181;
+    color: #004;
+    font-weight: 600;
+}
+
+.btn-submit:hover {
+    background-color: #f79b11;
+    color: #004;
+}
+
+/* Login/Signup Cards */
+.auth-card {
+    background-color: var(--bs-body-bg);
+    border: 1px solid #dee2e6;
+}
+
+/* Sort Links */
 .sort-links {
-    margin-left: 40%;
-    margin-right: 40%;
-    padding: 8px;
-}
-
-.sort-links a {
-    display: flex;
+    background-color: var(--bs-primary);
+    color: #004;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
     text-decoration: none;
-    color: #004;
-    background: #f3d19e;
-    border-radius: 5px;
-    padding: 7px;
-    cursor: pointer;
 }
 
-.sort-links a:hover {
-    background: #f79b11;
+.sort-links:hover {
+    background-color: #f79b11;
     color: #004;
 }
 
-.sort-link {
-    justify-content: center;
-    padding: 10px;
-    text-align: center;
+/* Auth Card Styles */
+.auth-card {
+    border-color: #444 !important;
+    background-color: #040 !important;
+    color: #f3d19e;
 }
 
-/*Style for the login form*/
-button {
-    background: #ecc181;
-    border: none;
-    border-radius: 6px;
-    padding: 8px;
-    margin-left: 85px;
-    color: #004;
-    font-weight: 600;
-    width: max-content;
+.auth-card-header {
+    background-color: #333 !important;
+    color: #ff9800 !important;
+    border-bottom: 1px solid #444 !important;
 }
 
-button:hover {
-    background: #f79b11;
-    color: #004;
-    justify-content: center;
+/* Form Controls */
+.auth-card .form-control {
+    background-color: #333;
+    color: white;
+    border-color: #555;
+    padding: 0.75rem 1rem;
 }
 
-input {
-    background: #f3d19e;
-    border: none;
-    border-radius: 5px;
-    padding: 8px;
-    margin-left: 25px;
-    color: #004;
+.auth-card .form-control:focus {
+    background-color: #444;
+    color: white;
+    border-color: #ff9800;
+    box-shadow: 0 0 0 0.25rem rgba(255, 152, 0, 0.25);
+}
+
+/* Buttons */
+.btn-auth-primary {
+    background-color: #ff9800;
+    border-color: #ff9800;
+    color: #041;
     font-weight: 600;
 }
 
-.login {
-    background-color: #041;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 30px auto;
+.btn-auth-primary:hover, 
+.btn-auth-primary:focus {
+    background-color: #f79b11;
+    border-color: #f79b11;
 }
 
-.signup {
-    display: block;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 30px auto;
+.btn-auth-outline {
+    border-color: #f3d19e;
+    color: #f3d19e;
 }
 
-/*Responsive design*/
+.btn-auth-outline:hover {
+    background-color: #f3d19e;
+    color: #041;
+}
+
+/* Divider */
+.auth-divider {
+    border-color: #444 !important;
+}
+
+/* Background */
+body {
+    background-color: #042;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .container {
-        width: 90%;
+    .container-custom {
+        width: 90% !important;
     }
-    nav ul {
-        flex-direction: column;
-    }
-    .sort-links {
-        margin-left: 10%;
-        margin-right: 10%;
+    
+    .sort-links-container {
+        margin-left: 10% !important;
+        margin-right: 10% !important;
     }
 }
